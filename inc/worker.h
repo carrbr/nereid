@@ -2,21 +2,33 @@
 #define WORKER_H
 
 #include "nereid.h"
+#include "message.h"
+#include "timestamp.h"
+
+class Edge;
 
 class Worker {
     public:
-        Worker(uint proc, uint node) : pid(proc), node_id(node) {};
+        Worker(const uint proc, const uint node) : pid(proc), node_id(node) {};
         ~Worker() {};
+        /*
+         * TODO
+         */
+        void registerForNotification(Timestamp t);
+        /*
+         * TODO
+         */
+        void sendMessage(Edge e, Message m, Timestamp t);
     private:
         /*
          * Process Identification Number of the worker
          */
-        uint pid;
+        const uint pid;
 
         /*
          * Node id number of the worker
          */
-        uint node_id;
+        const uint node_id;
 };
 
 #endif

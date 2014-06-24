@@ -14,6 +14,7 @@ all:
 check:
 	echo "IMPLEMENT ME!"
 clean:
+	rm nereid
 	cd obj; make clean
 install:
 	echo "IMPLEMENT ME!"

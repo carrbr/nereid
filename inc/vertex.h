@@ -3,9 +3,15 @@
 
 #include "nereid.h"
 #include "timestamp.h"
-#include "message.h"
 #include "edge.h"
 #include "graphComponent.h"
+
+// forward defs
+class Message;
+class Worker;
+
+// Unique identifier for verticies
+typedef uint VertexID;
 
 /*
  * This is a vertex in a timely dataflow Graph
@@ -16,12 +22,12 @@
  */
 class Vertex : public GraphComponent {
     public:
-        Vertex(Worker *w) { m_worker = w; }
+        Vertex(Worker& w, VertexID vID) : m_worker(w), m_ID(vID) {}
         virtual ~Vertex() {}
         /*
          * Callback to be executed when this vertex receives a new message
          */
-        virtual void OnRecv(Edge e, Message m, Timestame t)=0;
+        virtual void OnRecv(Edge e, Message m, Timestamp t)=0;
         /*
          * Sends message m by edge e with timestamp t
          */
@@ -36,8 +42,17 @@ class Vertex : public GraphComponent {
          * given timestamp have been completed
          */
         virtual void OnNotify(Timestamp t)=0;
+        virtual inline bool isEdge() { return false; }
+        virtual inline bool isVertex() { return true; }
     private:
-        Worker *m_worker;
+        /*
+         * reference to worker that vertex was instantiated by
+         */
+        Worker& m_worker;
+        /*
+         * Unique identifier assigned to vertex upon instantiation
+         */
+        const VertexID m_ID;
 };
 
 #endif

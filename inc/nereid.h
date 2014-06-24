@@ -44,4 +44,6 @@ inline bool FAILURE(Result r);
 void reportError(std::string func, int line, std::string msg);
 
 extern const std::string BASEDIR;
+
+typedef uint VertexID;
 #endif

@@ -8,24 +8,16 @@
  */
 class Timestamp {
     public:
-        Timestamp() {}
-        ~Timestamp() {}
-        /*
-         * Setter method for the time
-         */
-        void setTime(const uint t) {
-            assert_greater_than(t, 0);
-            time = t;
-        }
-            
+        Timestamp(const uint t) : m_time(t) {assert_greater_than(t, 0);}
+        ~Timestamp() {} 
         /*
          * Getter method for the time
          */
-        uint_t getTime() {
-            return time;
+        inline uint getTime() {
+            return m_time;
         }
     private:
-        uint time;
-}
+        const uint m_time;
+};
 
 #endif

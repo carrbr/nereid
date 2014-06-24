@@ -2,6 +2,10 @@
 #define POINTSTAMP_H
 
 #include "nereid.h"
+#include "vertex.h"
+#include "timestamp.h"
+
+typedef uint VertexID;
 
 /*
  * A pointstamp, used for various calculations involved in managing flow of
@@ -11,29 +15,19 @@
  */
 class Pointstamp {
     public:
-        Pointstamp() {}
-        Pointstamp(Timestamp t, GraphComponent g) : timestamp = t, 
-            location = g {}
+        Pointstamp(const Timestamp t, const VertexID vID) : m_timestamp(t), m_location(vID) {}
         ~Pointstamp() {}
         /*
          * getter method for the time
          */
-        TImestamp getTimeStamp();
-        /*
-         * Setter method for the time
-         */
-        void setTimeStamp(Timestamp);
+        Timestamp getTimeStamp();
         /*
          * Getter method for the location
          */
-        GraphComponent getLocation();
-        /*
-         * Setter method for the location
-         */
-        void setLocation();
+        VertexID getLocation();
     private:
-        Timestamp timestamp;
-        GraphComponent location;
+        const Timestamp m_timestamp;
+        const VertexID m_location;
 };
 
 #endif

@@ -13,7 +13,7 @@ Result Scheduler::init() {
        reportError(__FUNCTION__, __LINE__, "Error forking process");
        rc = S_FAIL;
     } else if (pid == 0) {
-        std::string worker_file("worker.o");
+        std::string worker_file("inc/worker.o");
         char *argv[] = {};
         execv((BASEDIR + worker_file).c_str(), argv);
         reportError(__FUNCTION__, __LINE__, "execv failed");

@@ -1,0 +1,14 @@
+LOCATION=
+SOURCES=$(wildcard *.cpp)
+OBJECTS=$(OBJDIR)/$(LOCATION)/$(SOURCES:.cpp=.o)
+
+all: $(OBJECTS)
+
+$(OBJECTS): $(SOURCES)
+	$(CXX) $(CPPFLAGS) $(INC) -c -o $@ $< 
+check:
+	echo "IMPLEMENT ME!"
+clean:
+	rm $(OBJECTS)	
+install:
+	echo "IMPLEMENT ME!"
